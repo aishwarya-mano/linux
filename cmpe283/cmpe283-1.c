@@ -55,7 +55,29 @@ struct capability_info entryctls[14] =
 	{ 21, "Load guest IA32_LBR_CTL" }
 	{ 22, "Load PKRS" }
 };
-
+		
+struct capability_info exitctls[18] =
+{
+	{ 2, "Save debug controls" },
+	{ 9, "Host address space size" },
+	{ 12, "Load IA32_PERF_GLOBAL_CTRL" },
+	{ 15, "Acknowledge Interrupt on exit" },
+	{ 18, "Save IA32_PAT" },
+	{ 19, "Load IA32_PAT" },
+	{ 20, "Save IA32_EFER" },
+	{ 21, "Load IA32_EFER" },
+	{ 22, "Save VMX-preemption timer value" },
+	{ 23, "Clear IA32_BNDCFGS" },
+	{ 24, "Conceal VM exits from Intel PT" },
+	{ 25, "Clear IA32_RTIT_CTL" },
+	{ 26, "Clear IA32_LBR_CTL" },
+	{ 27, "Clear UINV " },
+	{ 28, "Load CET state" },
+	{ 29, "Load PKRS" },
+	{ 30, "Save IA32_PERF_GLOBAL_CTL" },
+	{ 31, "Activate secondary controls" }
+};
+		
 /*
  * report_capability
  *
