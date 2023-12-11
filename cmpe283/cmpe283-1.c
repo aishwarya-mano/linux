@@ -78,6 +78,16 @@ struct capability_info exitctls[18] =
 	{ 31, "Activate secondary controls" }
 };
 
+ struct capability_info procbasedtertiaryctls[6] =
+{
+	{ 0, "LOADIWKEY exiting" },
+	{ 1, "Enable HLAT" },
+	{ 2, "EPT paging-write control" },
+	{ 3, "Guest-paging verification" },
+	{ 4, "IPI virtualization" },
+	{ 7, "Virtualize IA32_SPEC_CTRL" },
+};
+
 struct capability_info procbased[22] =
 {
 	{ 2, "Interrupt-window Exiting" },
