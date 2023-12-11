@@ -104,6 +104,42 @@ struct capability_info procbased[22] =
 	{ 31, "Activate secondary controls" }
 };
 
+struct capability_info procbasedsecondary[31] =
+{
+	{ 0, "Virtualize APIC accesses" },
+	{ 1, "Enable EPT" },
+	{ 2, "Descriptor-table exiting" },
+	{ 3, "Enable RDTSCP" },
+	{ 4, "Virtualize x2APIC mode" },
+	{ 5, "Enable VPID" },
+	{ 6, "WBINVD exiting" },
+	{ 7, "Unrestricted guest" },
+	{ 8, "APIC-register virtualization" },
+	{ 9, "Virtual-interrupt delivery" },
+	{ 10, "Pause-loop exiting" },
+	{ 11, "RDRAND exiting" },
+	{ 12, "Enable INVPCID" },
+	{ 13, "Enable VM functions" },
+	{ 14, "VMCS shadowing" },
+	{ 15, "Enable ENCLS exiting" },
+	{ 16, "RDSEED exiting" },
+	{ 17, "Enable PML" },
+	{ 18, "EPT-violation #VE" },
+	{ 19, "Conceal VMX non root operation from Intel PT" },
+	{ 20, "Enable XSAVES/XRSTORS" },
+	{ 21, "PASID translation" },
+	{ 22, "Mode-based execute control for EPT" },
+	{ 23, "Sub-page write permissions for EPT" },
+	{ 24, "Intel PT uses guest physical addresses" },
+	{ 25, "Use TSC scaling" }
+	{ 26, "Enable user wait and pause" },
+	{ 27, "Enable PCONFIG" },
+	{ 28, "Enable ENCLV exiting" },
+	{ 30, "VMM bus-lock detection" },
+	{ 31, "Instruction timeout" }
+	
+};
+
 /*
  * report_capability
  *
