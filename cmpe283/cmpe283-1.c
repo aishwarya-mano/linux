@@ -38,6 +38,24 @@ struct capability_info pinbased[5] =
 	{ 7, "Process Posted Interrupts" }
 };
 
+struct capability_info entryctls[14] =
+{
+	{ 2, "Load debug controls" },
+	{ 9, "IA-32e mode guest" },
+	{ 10, "Entry to SMM" },
+	{ 11, "Deactivate dual-monitor treatment" },
+	{ 13, "Load IA32_PERF_GLOBAL_CTRL" },
+	{ 14, "Load IA32_PAT" },
+	{ 15, "Load IA32_EFER" },
+	{ 16, "Load IA32_BNDCFGS" },
+	{ 17, "Conceal VM entries from Intel PT" }
+	{ 18, "LoadIA32_RTIT_CTL" }
+	{ 19, "Load UINV" }
+	{ 20, "Load CET state" }
+	{ 21, "Load guest IA32_LBR_CTL" }
+	{ 22, "Load PKRS" }
+};
+
 /*
  * report_capability
  *
