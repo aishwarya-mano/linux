@@ -1,63 +1,93 @@
-Steps to setup the Environment:
+# Environment Setup Guide
 
-Obtain the Linux Kernel Source Code:
+This guide provides step-by-step instructions for setting up your environment.
 
-$ git clone https://github.com/aishwarya-mano/linux.git
+## Getting the Linux Kernel Source
 
-Navigate to the Linux directory:
+1. **Clone the Linux Kernel Repository:**
+    ```bash
+    git clone https://github.com/aishwarya-mano/linux.git
+    ```
 
-$ cd linux
+2. **Navigate to the Linux Directory:**
+    ```bash
+    cd linux
+    ```
 
+3. **Install the Required Packages:**
+    ```bash
+    apt-get install build-essential kernel-package fakeroot libncurses5-dev libssl-dev ccache bison flex libelf-dev
+    ```
 
-Install the required packages:
+4. **Copy the Boot Config File to the Linux Folder:**
+    Replace `("Your_VM_Version")` with your actual VM version.
+    ```bash
+    cp /boot/config-("Your_VM_Version") .config
+    ```
 
-apt-get install build-essential kernel-package fakeroot libncurses5-dev libssl-dev ccache bison flex libelf-dev 
-Copy the Boot Config file to the Linux folder:
+5. **Make Old Configuration:**
+    ```bash
+    make oldconfig
+    ```
 
-$ sudo bash && cp /boot/config-[your VM version] .config
+6. **Build Kernel Modules:**
+    ```bash
+    make -j 8 modules
+    ```
 
-Perform an old configuration:
+7. **Build the Kernel Image:**
+    ```bash
+    make prepare
+    make -j 8
+    ```
 
-$ make oldconfig
+8. **Install the Modules:**
+    ```bash
+    sudo make INSTALL_MOD_STRIP=1 modules_install && sudo make install
+    ```
 
-Build the kernel image:
+9. **Reboot the VM:**
+    ```bash
+    reboot
+    ```
 
-$ make prepare && make -j[# of CPUs on your VM]
+10. **Verify the Kernel Module Name Change:**
+    ```bash
+    uname -a
+    ```
 
-Build kernel modules:
+11. **Download the Required Tools for Hosting a Nested VM:**
+    ```bash
+    sudo apt-get install qemu-kvm libvirt-bin virtinst bridge-utils cpu-checker
+    ```
 
-$ make -j8 modules
+12. **Install a Linux ISO Image of Your Choice:**
+    For this setup, CentOS was selected. You can download it using the following command, or replace the URL with the ISO of your preferred Linux distribution.
+    ```bash
+    wget "https://centos.mirror.shastacoe.net/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-Minimal-2207-02.iso"
+    ```
 
-Install modules ( Update the command):
+13. **Remove the KVM and KVM_INTEL Modules:**
+    ```bash
+    rmmod kvm_intel
+    rmmod kvm
+    ```
+14. **Update the KVM and KVM_INTEL Modules:**
+    ```bash
+    modprobe kvm
+    modprobe kvm_intel
+    lsmod | grep kvm
+    ```
 
-$ sudo make INSTALL_MOD_STRIP=1 modules_install && sudo make install
+15. **Create the Nested VM:**
+    Replace `[your_path]` with the path to your CentOS ISO.
+    ```bash
+    virt-install --network bridge:virbr0 --name centosvm2 --os-variant=centos7.0 --ram=2048 --vcpus=2 --disk size=20 --graphics none --location=[your_path] --extra-args="console=tty0 console=ttyS0,115200" --check all=off
+    ```
 
-Reboot the system:
-
-$ reboot
-
-Verify the kernel module changes:
-
-$ uname -a
-
- Download the necessary tools for hosting a nested VM:
-
-$ sudo apt-get install qemu-kvm libvirt-bin virtinst bridge-utils cpu-checker
-
- Install a Linux ISO image of your choice (We selected CentOS):
-
-Download CentOS ISO:
-$ wget "https://centos.mirror.shastacoe.net/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-Minimal-2207-02.iso"
-
-Update KVM and KVM_INTEL modules:
-$ rmmod kvm_intel && rmmod kvm && modprobe kvm && modprobe kvm_intel && lsmod | grep kvm
-
-Create the nested VM:
-
-$ virt-install --network bridge:virbr0 --name nested-vm --os-variant=centos7.0 --ram=2048 --vcpus=2 --disk size=20 --graphics none --location=[your_path] --extra-args="console=tty0 console=ttyS0,115200" --check all=off
-
-Start the VM and access the console:
-
-$ virsh start [your VM name]
-$ virsh console [your VM name]
-$ virsh shutdown [your VM name]
+16. **Start the VM and Enter the Console:**
+    ```bash
+    virsh start centosvm2
+    virsh console centosvm2
+    virsh shutdown centosvm2
+    ```
