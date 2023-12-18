@@ -1582,7 +1582,10 @@ int kvm_emulate_cpuid(struct kvm_vcpu *vcpu_ptr)
 
         switch (reg_eax) {
                 case 0x4FFFFFFF:
-                       #Fcode
+                       reg_eax = total_exits;
+                        reg_ebx = reg_ecx = reg_edx = 0;
+                        printk(KERN_INFO "0x4FFFFFFF Total Exits = %d", total_exits);
+                        break;
                 case 0x4FFFFFFD:
                 case 0x4FFFFFFC:
                         if (reg_ecx < 0 || (reg_ecx > 35 && reg_ecx < 38) || (reg_ecx > 42 && reg_ecx < 71) || reg_ecx > 75) {
@@ -1614,7 +1617,14 @@ int kvm_emulate_cpuid(struct kvm_vcpu *vcpu_ptr)
                         break;
 
                 case 0x4FFFFFFE:
-                       #Ecode
+                       printk(KERN_INFO "0x4FFFFFFE Total time processing all exits = %llu", total_time_processing_exits);
+                        u32 lower_bits = (u32)total_time_processing_exits;
+                        u32 upper_bits = total_time_processing_exits >> 32;
+                        reg_eax = 0;
+                        reg_ebx = upper_bits;
+                        reg_ecx = lower_bits;
+                        reg_edx = 0;
+                        break;
                 default:
                         kvm_cpuid(vcpu_ptr, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx, false);
         }
