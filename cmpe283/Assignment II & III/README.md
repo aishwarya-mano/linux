@@ -6,7 +6,7 @@ This guide provides step-by-step instructions for setting up your environment.
 1. Aishwarya Manoharan
 2. Sanjay Sathyarapu
 
-## Getting the Linux Kernel Source
+## Steps on getting the Linux Kernel Source
 
 1. **Clone the Linux Kernel Repository:**
     ```bash
@@ -99,27 +99,46 @@ This guide provides step-by-step instructions for setting up your environment.
 
 ### Assignment #2 (0x4FFFFFFF) & (0x4FFFFFFD)
 
-1. **Contribution**
+* **Contribution**
    
-  Answer: <br> Aishwarya - Completed the setup for the nested VM environment and executed coding for leaf node 0x4FFFFFFD. <br> <br> Sanjay - Executed code development for leaf node 0x4FFFFFFF, crafted the testing program, and verified the correctness of the outcomes
-    
-2. **Describe in detail the steps you used to complete the assignment.**
-   
-   > Please find the above steps.
+  * Aishwarya - Completed the setup for the nested VM environment and executed coding for leaf node 0x4FFFFFFD.
+  * Sanjay - Executed code development for leaf node 0x4FFFFFFF, crafted the testing program, and verified the correctness of the outcomes
+
+* **Describe in detail the steps you used to complete the assignment.**
+    *  Please find the above steps.
    
 ### Assignment #3 (0x4FFFFFFC) & (0x4FFFFFFE)
 
-1. **Contribution**
+* **Contribution**
+    * Aishwarya - Completed the environment setup for the nested VM and implemented the code for leaf node 0x4FFFFFFC.
+    * Sanjay - Executed the coding for leaf node 0x4FFFFFFE, formulated and tested the program, ensuring result accuracy, and collaborated with Aishwarya in verifying the outcomes for the assignment questions.
+
+* **Describe in detail the steps you used to complete the assignment.**
+    * Please read the steps mentioned above
+
+* **Comment on the frequency of exits – does the number of exits increase at a stable rate? Or are there more exits performed during certain VM operations? Approximately how many exits does a full VM boot entail?**
+    * The frequency of exits is irregular, with varying counts for different exit numbers.
+    * The total number of exits during a full VM boot appears contradictory, as it decreases from 1,201,533 to 0.
    
-   > Answer: <br> Aishwarya - Completed the environment setup for the nested VM and implemented the code for leaf node 0x4FFFFFFC. <br> <br> Sanjay - Implemented the code for leaf node 0x4FFFFFFC, developed the testing program, and confirmed the accuracy of the results; created the test program and verified the results for the assignment questions along with Aishwarya. <br> <br> Sanjay - Executed the coding for leaf node 0x4FFFFFFE, formulated and tested the program, ensuring result accuracy, and collaborated with Aishwarya in verifying the outcomes for the assignment questions.
+* **Of the exit types defined in the SDM, which are the most frequent? Least?**
+    * The most frequent exit for us is exit number 30, with total exits as 1510473
+    * The Least was 29 and 55, with 5 total exits.
+    * There were many exit numbers with 0 exits.
+
+### Output screenshots
+* **Leaf node 0X4FFFFFFF**
+  ![](/images/0x4fffffff.jpeg??raw=true "Optional Title")
+  ![Alt text](/images/dmesg_0x4fffffff.jpeg?raw=true "Optional Title")
   
-2. **Describe in detail the steps you used to complete the assignment.** 
-   > Please read the steps mentioned above
+* **Leaf node 0X4FFFFFFC**
+   ![Alt text](/images/0x4ffffffc.jpeg?raw=true "Optional Title")
+   ![Alt text](/images/dmesg_0x4ffffffc.jpeg?raw=true "Optional Title")
 
-3. **Comment on the frequency of exits** – does the number of exits increase at a stable rate? Or are there more exits performed during certain VM operations? Approximately how many exits does a full VM boot entail?
- 
-   <br> The frequency of exits is irregular, with varying counts for different exit numbers. The total number of exits during a full VM boot appears contradictory, as it decreases from 1,201,533 to 0. <br> <br>
+* **Leaf node 0X4FFFFFFD**
+   ![Alt text](/images/0x4ffffffd.jpeg??raw=true "Optional Title")
+   ![Alt text](/images/dmesg_0x4ffffffd.jpeg?raw=true "Optional Title")
+
+* **Leaf node 0X4FFFFFFE**
+   ![Alt text](/images/0x4ffffffe.jpeg??raw=true "Optional Title")
+   ![Alt text](/images/dmesg_0x4ffffffe.jpeg?raw=true "Optional Title")
    
-5. **Of the exit types defined in the SDM, which are the most frequent? Least?**
-
-    > Answer: <br> The most frequent exit for us is exit number 30, with total exits as 1510473 and the least was 29 and 55, with 5 total exits. There were many exit numbers with 0 exits.
