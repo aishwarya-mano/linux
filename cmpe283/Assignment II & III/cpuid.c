@@ -1583,7 +1583,6 @@ int kvm_emulate_cpuid(struct kvm_vcpu *vcpu_ptr)
         switch (reg_eax) {
                 case 0x4FFFFFFF:
                        #Fcode
-
                 case 0x4FFFFFFD:
                 case 0x4FFFFFFC:
                         if (reg_ecx < 0 || (reg_ecx > 35 && reg_ecx < 38) || (reg_ecx > 42 && reg_ecx < 71) || reg_ecx > 75) {
@@ -1614,7 +1613,8 @@ int kvm_emulate_cpuid(struct kvm_vcpu *vcpu_ptr)
                         }
                         break;
 
-               ##C Code
+                case 0x4FFFFFFE:
+                       #Ecode
                 default:
                         kvm_cpuid(vcpu_ptr, &reg_eax, &reg_ebx, &reg_ecx, &reg_edx, false);
         }
