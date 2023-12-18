@@ -1584,12 +1584,12 @@ int kvm_emulate_cpuid(struct kvm_vcpu *vcpu_ptr)
                 case 0x4FFFFFFF:
                        reg_eax = total_exits;
                         reg_ebx = reg_ecx = reg_edx = 0;
-                        printk(KERN_INFO "0x4FFFFFFF Total Exits = %d", total_exits);
+                        printk(KERN_INFO "0x4FFFFFFF Total Exits are = %d", total_exits);
                         break;
                 case 0x4FFFFFFD:
                 case 0x4FFFFFFC:
                         if (reg_ecx < 0 || (reg_ecx > 35 && reg_ecx < 38) || (reg_ecx > 42 && reg_ecx < 71) || reg_ecx > 75) {
-                                printk(KERN_INFO "NOT DEFINED IN SDM");
+                                printk(KERN_INFO "Not Defined In SDM");
                                 reg_eax = reg_ebx = reg_ecx = 0;
                                 reg_edx = 0xffffffff;
                         } else if ((reg_ecx >= 3 && reg_ecx <= 6) || (reg_ecx >= 11 && reg_ecx <= 17) || (reg_ecx >= 28 && reg_ecx <= 34) || (reg_ecx >= 51 && reg_ecx <= 75)) {
@@ -1600,10 +1600,10 @@ int kvm_emulate_cpuid(struct kvm_vcpu *vcpu_ptr)
                                         printk(KERN_INFO "0x4FFFFFFD EXIT NUMBER: %d, TOTAL EXITS: %d", reg_ecx, reg_eax);
                                         reg_ebx = reg_ecx = reg_edx = 0;
                                         for (int i = 0; i <= 75; i++) {
-                                                printk(KERN_INFO "EXIT #%d, TOTAL EXITS: %lld", i, exit_counts[i]);
+                                                printk(KERN_INFO "EXIT #%d, Total Exits: %lld", i, exit_counts[i]);
                                         }
                                 } else {
-                                        printk(KERN_INFO "EXIT NUMBER: %d", reg_ecx);
+                                        printk(KERN_INFO "Exit Number: %d", reg_ecx);
                                         u64 time_of_exit = exit_processing_times[reg_ecx];
                                         u32 lower_exit_bits = (u32)time_of_exit;
                                         u32 upper_exit_bits = time_of_exit >> 32;
@@ -1611,7 +1611,7 @@ int kvm_emulate_cpuid(struct kvm_vcpu *vcpu_ptr)
                                         reg_ebx = upper_exit_bits;
                                         reg_ecx = lower_exit_bits;
                                         reg_edx = 0;
-                                        printk(KERN_INFO "0x4FFFFFFC TOTAL EXIT=%d, PROCESSING TIME= %llu", reg_ecx, time_of_exit);
+                                        printk(KERN_INFO "0x4FFFFFFC Total exit=%d, Processing time= %llu", reg_ecx, time_of_exit);
                                 }
                         }
                         break;
